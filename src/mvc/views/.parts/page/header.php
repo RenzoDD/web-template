@@ -58,7 +58,7 @@ if (!function_exists("str_starts_with"))
 <navbar class="navbar navbar-expand-md navbar-dark bg-dark header">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img src="/img/original.png" height="50">
+            <img src="/assets/img/original.png" height="50">
             PHP Web Template
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,11 +67,11 @@ if (!function_exists("str_starts_with"))
         <div class="collapse navbar-collapse text-center" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <?php
-                    NavbarItem(true , Icon("house-door-fill")       . " Home"         , "#"                   , str_starts_with( $codigo_pagina, "/home") );
-                    NavbarItem(true , Icon("hand-thumbs-up-fill")   . " Modal regular", "#iniciarSesion"      , str_starts_with( $codigo_pagina, "/example"), true);
-                    NavbarItem(true , Icon("hand-thumbs-down-fill") . " Modal static" , "#ingresarObligatorio", str_starts_with( $codigo_pagina, "/php")    , true);
-                    NavbarItem(true , Icon("three-dots-vertical")   . " Dropdown"     , "#"                   , str_starts_with( $codigo_pagina, "/web")    , false, [["href"=>"https://google.com", "text"=>"Google"],["href"=>"https://twitter.com", "text"=>"Twitter"]]);
-                    NavbarItem(false, Icon("x-octagon-fill")        . " Disabled");
+                    NavbarItem(true , Bootstrap::Icon("house-door-fill")       . " Home"         , "#"                   , str_starts_with( $codigo_pagina, "/home") );
+                    NavbarItem(true , Bootstrap::Icon("hand-thumbs-up-fill")   . " Modal regular", "#iniciarSesion"      , str_starts_with( $codigo_pagina, "/example"), true);
+                    NavbarItem(true , Bootstrap::Icon("hand-thumbs-down-fill") . " Modal static" , "#ingresarObligatorio", str_starts_with( $codigo_pagina, "/php")    , true);
+                    NavbarItem(true , Bootstrap::Icon("three-dots-vertical")   . " Dropdown"     , "#"                   , str_starts_with( $codigo_pagina, "/web")    , false, [["href"=>"https://google.com", "text"=>"Google"],["href"=>"https://twitter.com", "text"=>"Twitter"]]);
+                    NavbarItem(false, Bootstrap::Icon("x-octagon-fill")        . " Disabled");
                 ?>
             </ul>
         </div>

@@ -10,9 +10,10 @@ session_start();
 
 require_once __CONTROLLER__ . "/ClassController.php";
 
-if (route("/file/create/:variable?"))
+if (route("/"))
 {
-    print_r($_GET);
+    $class = new ClassController();
+    $class->Home();
 }
 
 ?>
