@@ -27,7 +27,7 @@ define("__VIEW__", __DIR__ . "/mvc/views");
 define("__CONTROLLER__", __DIR__ . "/mvc/controllers");
 
 define("__SERVER__", $_SERVER["SERVER_NAME"]);
-define("__ROUTE__", explode("?", $_SERVER['REQUEST_URI'])[0]);
+define("__ROUTE__", $_SERVER['REQUEST_URI']);
 
 
 function MetaHeaders($title = "", $description = "")
@@ -207,7 +207,7 @@ class Bootstrap
 
     static function Alert($message, $type = "primary", $dissmiss = false, $icon = "")
     {
-        $icon = $icon != "" ? Icon($icon) : "";
+        $icon = $icon != "" ? self::Icon($icon) : "";
 
         $close = $dissmiss ? "<button type='button' class='btn-close' data-bs-dismiss='alert'></button>" : "";
         $dissmiss = $dissmiss ? " alert-dismissible fade show" : "";
@@ -219,4 +219,66 @@ class Bootstrap
         $close
     </div>";
     }
+}
+
+function routeCheck($template)
+{
+    $arg = explode("?", __ROUTE__)[0];
+    $arg = explode("#", $arg)[0];
+    $arg = explode("/", $arg);
+
+    $tmp = explode("/", $template);
+
+    array_shift($arg);
+    array_shift($tmp);
+
+    $min = min(sizeof($arg), sizeof($tmp));
+    $max = max(sizeof($arg), sizeof($tmp));
+
+    $get = [];
+
+    for ($i = 0; $i < $min; $i++)
+    {
+        //$tmp[$i]  $arg[$i]
+
+        if ($tmp[$i][0] === ':')    //Variable
+        {
+            if ($tmp[$i][  strlen($tmp[$i]) - 1  ] === '?')
+                $len = strlen($tmp[$i]) - 2;
+            else
+                $len = strlen($tmp[$i]) - 1;
+            $get[substr($tmp[$i], 1, $len)] = $arg[$i];
+        }
+        else
+        {
+            if ($tmp[$i] !== $arg[$i]) return null;           
+        }
+    }
+
+    if ($i <= $max && $max === sizeof($tmp))
+    {
+        for ($i = $i; $i < $max; $i++)
+        {
+            if (  $tmp[$i][  strlen($tmp[$i]) - 1  ] !== '?'  ) // Optional
+                return null;
+            else if ($tmp[$i][0] === ':')    //Variable
+                $get[substr($tmp[$i], 1, strlen($tmp[$i]) - 2)] = null;
+        }
+    }
+    else
+        return null;
+
+    return $get;
+}
+
+function route($template)
+{
+    $get = routeCheck($template);
+    if ($get !== null)
+    {
+        $_GET = array_merge($_GET, $get);
+        return true;
+    }
+
+    return false;
 }
