@@ -2,12 +2,12 @@
 /*
  * Copyright 2021 (c) Renzo Diaz
  * Licensed under MIT License
- * Class template
+ * Class model
  */
 
-require_once __DIR__.'/DataBase.php';
+require_once __DIR__.'/DatabaseModel.php';
 
-class ClassTemplate extends DataBase
+class ClassModel extends DatabaseModel
 {
     public $ClassID;
 
@@ -15,26 +15,26 @@ class ClassTemplate extends DataBase
     public $ClassAtribute2;
     public $ClassAtribute3;
     
-	private function FillData($destino, $origen)
+	private function FillData($destiny, $origin)
 	{
-		if (isset($origen['ClassID']))
-			$destino->ClassID = $origen['ClassID'];
+		if (isset($origin['ClassID']))
+			$destiny->ClassID = $origin['ClassID'];
 
-		if (isset($origen['ClassAtribute1']))
-			$destino->ClassAtribute1 = $origen['ClassAtribute1'];
+		if (isset($origin['ClassAtribute1']))
+			$destiny->ClassAtribute1 = $origin['ClassAtribute1'];
 			
-		if (isset($origen['ClassAtribute2']))  
-			$destino->ClassAtribute2 = $origen['ClassAtribute2'];
+		if (isset($origin['ClassAtribute2']))  
+			$destiny->ClassAtribute2 = $origin['ClassAtribute2'];
 		
-		if (isset($origen['ClassAtribute3']))  
-			$destino->FechaCreacion = $origen['ClassAtribute3'];
+		if (isset($origin['ClassAtribute3']))  
+			$destiny->FechaCreacion = $origin['ClassAtribute3'];
 	}
 
 	public function Create($ClassAtribute1,$ClassAtribute2)
 	{
 		try
 		{
-			$query = $this->db->prepare("CALL CLASS_TEMPLATE_CREATE(:ClassAtribute1,:ClassAtribute2)");
+			$query = $this->db->prepare("CALL Class_Create(:ClassAtribute1,:ClassAtribute2)");
 			$query->bindParam(":ClassAtribute1", $ClassAtribute1, PDO::PARAM_STR);
 			$query->bindParam(":ClassAtribute2", $ClassAtribute2, PDO::PARAM_STR);
 			
@@ -58,7 +58,7 @@ class ClassTemplate extends DataBase
     {
         try
         {
-            $query = $this->db->prepare("CALL CLASS_TEMPLATE_READ_ALL()");
+            $query = $this->db->prepare("CALL Class_Read_All()");
             
             if (!$query->execute())
                 return [];
@@ -68,7 +68,7 @@ class ClassTemplate extends DataBase
             $A = [];
             foreach ($result as $row)
             {
-                $obj = new ClassTemplate();
+                $obj = new ClassModel();
                 $obj->FillData($obj, $row);
                 $A[$obj->ClassID] = $obj;
             }
@@ -79,11 +79,11 @@ class ClassTemplate extends DataBase
         { return []; }
     }
 
-	public function ReadID($ClassID)
+	public function ReadClassID($ClassID)
 	{
 		try
 		{
-			$query = $this->db->prepare("CALL CLASS_TEMPLATE_READ_ID(:ClassID)");
+			$query = $this->db->prepare("CALL Class_Read_ClassID(:ClassID)");
 			$query->bindParam(":ClassID", $ClassID, PDO::PARAM_INT);
 			
 			if (!$query->execute())
@@ -103,15 +103,13 @@ class ClassTemplate extends DataBase
 		{ return null; }
 	}
 
-    public function EditAll($ClassID,$ClassAtribute1,$ClassAtribute2,$ClassAtribute3)
+    public function ModifyClassAtribute1($ClassID,$ClassAtribute1)
     {
 		try
 		{
-			$query = $this->db->prepare("CALL CLASS_TEMPLATE_EDIT_ALL(:ClassID,:ClassAtribute1,:ClassAtribute2,:ClassAtribute3)");
+			$query = $this->db->prepare("CALL Class_Modify_ClassAtribute1(:ClassID,:ClassAtribute1)");
 			$query->bindParam(":ClassID",        $ClassID,        PDO::PARAM_INT);
 			$query->bindParam(":ClassAtribute1", $ClassAtribute1, PDO::PARAM_STR);
-			$query->bindParam(":ClassAtribute2", $ClassAtribute2, PDO::PARAM_STR);
-			$query->bindParam(":ClassAtribute3", $ClassAtribute3, PDO::PARAM_STR);
 	
 			if (!$query->execute())
 				return false;
@@ -129,11 +127,11 @@ class ClassTemplate extends DataBase
 		{ return false; } 
     }
 
-	public function DeleteID($ClassID)
+	public function DeleteClassID($ClassID)
 	{
 		try
 		{
-			$query = $this->db->prepare("CALL CLASS_TEMPLATE_DELETE_ID(:ClassID)");
+			$query = $this->db->prepare("CALL Class_Delete_ClassID(:ClassID)");
 			$query->bindParam(":ClassID", $ClassID, PDO::PARAM_INT);
 			
 			if (!$query->execute())
