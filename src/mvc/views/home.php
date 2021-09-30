@@ -24,13 +24,13 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-	<?php require __VIEW__ . "/.php/parts/page/header.php"; ?>
+	<?php require __VIEW__ . "/.parts/page/header.php"; ?>
 
 	<main class="container my-3">
-		<h1><?php echo Icon("globe"); ?> Hello, world!</h1>
-		<p> I'm using <?php echo Icon("bootstrap"); ?> <b>bootstrap</b></p>
+		<h1><?php echo Bootstrap::Icon("globe"); ?> Hello, world!</h1>
+		<p> I'm using <?php echo Bootstrap::Icon("bootstrap"); ?> <b>bootstrap</b></p>
 
-		<?php require __VIEW__ . "/.php/parts/graphs/bars.php"; ?>
+		<?php require __VIEW__ . "/.parts/graphs/bars.php"; ?>
 	</main>
 
 	<?php require __VIEW__ . "/.parts/page/footer.php"; ?>

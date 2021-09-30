@@ -29,6 +29,10 @@ define("__CONTROLLER__", __DIR__ . "/mvc/controllers");
 define("__SERVER__", $_SERVER["SERVER_NAME"]);
 define("__ROUTE__", $_SERVER['REQUEST_URI']);
 
+if (__SERVER__ === "localhost")
+    error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+else
+    error_reporting(0);
 
 function MetaHeaders($title = "", $description = "")
 {
@@ -229,8 +233,8 @@ function routeCheck($template)
 
     $tmp = explode("/", $template);
 
-    array_shift($arg);
-    array_shift($tmp);
+    $arg = array_filter($arg);
+    $tmp = array_filter($tmp);
 
     $min = min(sizeof($arg), sizeof($tmp));
     $max = max(sizeof($arg), sizeof($tmp));
@@ -240,7 +244,6 @@ function routeCheck($template)
     for ($i = 0; $i < $min; $i++)
     {
         //$tmp[$i]  $arg[$i]
-
         if ($tmp[$i][0] === ':')    //Variable
         {
             if ($tmp[$i][  strlen($tmp[$i]) - 1  ] === '?')
