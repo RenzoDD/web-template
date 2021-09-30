@@ -27,7 +27,7 @@ class ClassModel extends DatabaseModel
 			$destiny->ClassAtribute2 = $origin['ClassAtribute2'];
 		
 		if (isset($origin['ClassAtribute3']))  
-			$destiny->FechaCreacion = $origin['ClassAtribute3'];
+			$destiny->ClassAtribute3 = $origin['ClassAtribute3'];
 	}
 
 	public function Create($ClassAtribute1,$ClassAtribute2)
@@ -94,7 +94,7 @@ class ClassModel extends DatabaseModel
 			if (sizeof($result) == 0)
 				return null;
 			
-			$obj = new ClassTemplate();
+			$obj = new ClassModel();
 			$obj->FillData($obj, $result[0]);
 			
 			return $obj;
