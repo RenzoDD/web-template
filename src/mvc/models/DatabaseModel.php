@@ -2,12 +2,10 @@
 /*
  * Copyright 2021 (c) Renzo Diaz
  * Licensed under MIT License
- * Database class
+ * Database model
  */
 
-require_once __DIR__ . "/../config.php";
-
-class DataBase
+class DatabaseModel
 {
     protected $db;
     private $query;
