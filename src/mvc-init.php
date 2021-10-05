@@ -239,6 +239,9 @@ function routeCheck($template)
     $min = min(sizeof($arg), sizeof($tmp));
     $max = max(sizeof($arg), sizeof($tmp));
 
+    $arg = array_values($arg);
+    $tmp = array_values($tmp);
+
     $get = [];
 
     for ($i = 0; $i < $min; $i++)
