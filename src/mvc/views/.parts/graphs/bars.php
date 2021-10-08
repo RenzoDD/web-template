@@ -6,7 +6,7 @@
  */
 ?>
 
-<script src="/js/chart.js"></script>
+<script src="/assets/js/chart.js"></script>
 <canvas id="myChart" class="" width="100%" height="100%"></canvas>
 <script>
     var ctx = document.getElementById('myChart');
