@@ -20,10 +20,11 @@ A cool MVC web-site-template for PHP I mostly use :)
 * Back-End
     * [PHPMailer v6.5.1](https://github.com/PHPMailer/PHPMailer) - Email sending library
     * [PHPExcel v1.8.1](https://github.com/PHPOffice/PHPExcel) - Excel library
+    * [PHPQRCode v1.1.4](http://phpqrcode.sourceforge.net/) - PHP QR Code Generator
 
 ## Authors ✒️
 
-* **Renzo Diaz** - [RenzoDD2001](https://github.com/RenzoDD2001)
+* **Renzo Diaz** - [RenzoDD](https://github.com/RenzoDD)
 
 ## Licence 📄
 

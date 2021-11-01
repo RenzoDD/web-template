@@ -26,6 +26,9 @@ define("__MODEL__", __DIR__ . "/mvc/models");
 define("__VIEW__", __DIR__ . "/mvc/views");
 define("__CONTROLLER__", __DIR__ . "/mvc/controllers");
 
+define("__ASSETS__", __DIR__ . "/assets");
+define("__LIBS__", __DIR__ . "/libs");
+
 define("__SERVER__", $_SERVER["SERVER_NAME"]);
 define("__ROUTE__", $_SERVER['REQUEST_URI']);
 

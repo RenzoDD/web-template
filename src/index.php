@@ -15,5 +15,10 @@ if (route("/"))
     $class = new ClassController();
     $class->Home();
 }
+else if (route("/qrcode/:data"))
+{
+    require __LIBS__ . "/QRCode.php";
+    QRcode::png($_GET["data"]);
+}
 
 ?>
