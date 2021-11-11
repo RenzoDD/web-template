@@ -4,4 +4,6 @@
  * Create database
  */
 
-CREATE DATABASE IF NOT EXISTS Template;
+DROP DATABASE IF EXISTS Template;
+CREATE DATABASE Template;
+USE Template;

@@ -29,7 +29,8 @@ BEGIN
 	FROM 	TableTemplate AS T
 	WHERE 	T.ClassAtribute1 = ClassAtribute1
 			AND T.ClassAtribute2 = HashSalt( ClassAtribute2, @salt )
-			AND T.ClassAtribute3 = @salt;
+			AND T.ClassAtribute3 = @salt
+	LIMIT 	1;
 END //
 
 DROP PROCEDURE IF EXISTS Class_Read_All //
@@ -44,7 +45,8 @@ CREATE PROCEDURE Class_Read_ClassID ( IN ClassID INTEGER )
 BEGIN
 	SELECT  T.*
 	FROM 	TableTemplate AS T
-	WHERE 	T.ClassID = ClassID;
+	WHERE 	T.ClassID = ClassID
+	LIMIT	1;
 END //
 
 DROP PROCEDURE IF EXISTS Class_Modify_ClassAtribute1 //
@@ -57,7 +59,8 @@ BEGIN
 	SELECT  T.*
 	FROM 	TableTemplate AS T
 	WHERE 	T.ClassID = ClassID
-			AND T.ClassAtribute1 = ClassAtribute1;
+			AND T.ClassAtribute1 = ClassAtribute1
+	LIMIT	1;
 END //
 
 DROP PROCEDURE IF EXISTS Class_Delete_ClassID //
@@ -69,5 +72,6 @@ BEGIN
 
 	SELECT  T.*
 	FROM 	TableTemplate AS T
-	WHERE 	T.ClassID = ClassID;
+	WHERE 	T.ClassID = ClassID
+	LIMIT 	1;
 END //
