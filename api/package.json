@@ -1,0 +1,12 @@
+{
+    "name": "web-template",
+    "version": "1.0.0",
+    "description": "NodeJS API Rest with Express",
+    "main": "src/index.js",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "keywords": ["template"],
+    "author": "RenzoDD",
+    "license": "MIT"
+}
